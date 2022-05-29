@@ -1,7 +1,4 @@
 # AS-DMF：A Lightweight TLS encrypted traffic detection framework
-
-Badges
-`Active learning`, `machine learning`, `TLS`, `python, zeek`  
 Authors:   
 ## Contents
 - [Introduction](#Introduction)
