@@ -15,13 +15,13 @@ Authors:
 ## Introduction  
 Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
 __Modules of AS-DMF framework include:__
-* __Data pre-processing and feature extraction__
+* __Data pre-processing and feature extraction__.
 This module is used to pre-process the captured pcap packets and perform preliminary feature extraction to select the TLS encrypted flows to form the initial sample set.
-* __Feature reduction mechanism__
+* __Feature reduction mechanism__.
 This module is used to perform feature selection and to study feature-level lightweighting.
-* __DMF classifier__
+* __DMF classifier__.
 DMF classifier is the model used to train query samples in AS-DMF framework.
-* __Query and train__
+* __Query and train__.
 This module is the query and training process of AS-DMF. It mainly uses the pool-based active learning framework and specific querying strategies to query and label informative and representative instances. and train the labeled samples using DMF classifier.
 
 Figure
@@ -36,27 +36,27 @@ wireshark
 ```  
 2. Basic Dependencies
 ```
-	scikit-learn
-	zat
-	zeek-flowmeter
-	alipy
+scikit-learn
+zat
+zeek-flowmeter
+alipy
 ```  
-3. How to get them:
+3. How to get them:  
 Please refer to the _import.txt_  
 
-##Dataset and feature extraction
+## Dataset and feature extraction
 You can run this module in _Data pre-processing.ipyn_.  
 Details are shown below:   
-1.Dataset
+1.Dataset  
 We use the open source [CTU-13]( https://www.stratosphereips.org/datasets-ctu13 “CTU-13”) botnet dataset.  
 2.How to merge pacp packets?  
 You need to execute the following command from the command line:
 ```
 >cd wireshark
 >mergecap -w target_path/normal.pcap source_path/CTU-Normal/*.pcap
-```  
+```
 3. Initial feature extraction in zeek  
->zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
+zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
 4. To Python  
 Import the extracted features into Python by zat and filter the TLS encrypted flows.  
 
@@ -83,7 +83,9 @@ return stack
 ```  
 ## Query and train  
 After completing the modeling, you can quickly build an AS-DMF query framework using the Toolbox tool in the ALiPy package. The framework uses a pool-based active learning approach and a specific query strategy for querying, labeling and training. You need to pre-set a labeled training set L and a large pool of unlabeled samples U. The sample size of L and U can be set by yourself.  
+```python
 alibox.split_AL(test_ratio=0.3, initial_label_rate=0.001, split_count=10)
+```
 ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take uncertainty adoption as an example to quickly implement a query operation.  
 ```python
 alibox = ToolBox(X=X, y=y, query_type='AllLabels', saving_path='.')
