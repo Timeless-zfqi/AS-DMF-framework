@@ -1,8 +1,8 @@
-Badges
-`Active learning`, `machine learning`, `TLS`, `python, zeek`
-
 #AS-DMF：A Lightweight TLS encrypted traffic detection framework
-Authors: 
+
+Badges
+`Active learning`, `machine learning`, `TLS`, `python, zeek`  
+Authors:   
 ## Contents
 - [Introduction](#Introduction)
 - [Setup](#Setup)
@@ -11,11 +11,9 @@ Authors:
 	- [DMF classifier](#DMF-classifier)
 - [Query and train]( Query-and-train) 
 - [Acknowledgement](#Acknowledgement) 
-- [License](#License) 
-
-
-##Introduction
-Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.
+- [License](#License)   
+##Introduction  
+Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
 __Modules of AS-DMF framework include:__
 * __Data pre-processing and feature extraction__
 This module is used to pre-process the captured pcap packets and perform preliminary feature extraction to select the TLS encrypted flows to form the initial sample set.
@@ -28,49 +26,49 @@ This module is the query and training process of AS-DMF. It mainly uses the pool
 
 Figure
 ## Setup
-Before you use this project, you must configure the following environment.
-###1. Requirements
+Before you use this project, you must configure the following environment.  
+1. Requirements
 ```
 python >= 3.7
 linux >= Ubuntu 20.04
-zeek >= 4.0+(LST)
-	wireshark
-```
-###2. Basic Dependencies
+zeek(LST) >= 4.0+
+wireshark
+```  
+2. Basic Dependencies
 ```
 	scikit-learn
 	zat
 	zeek-flowmeter
 	alipy
-```
-###3. How to get them:
-Please refer to the _import.txt_
+```  
+3. How to get them:
+Please refer to the _import.txt_  
 
 ##Dataset and feature extraction
-You can run this module in _Data pre-processing.ipyn_.
-Details are shown below: 
-###1.Dataset
-We use the open source [CTU-13]( https://www.stratosphereips.org/datasets-ctu13 “CTU-13”) botnet dataset.
-###2.How to merge pacp packets?
-You need to execute the following command from the command line
+You can run this module in _Data pre-processing.ipyn_.  
+Details are shown below:   
+1.Dataset
+We use the open source [CTU-13]( https://www.stratosphereips.org/datasets-ctu13 “CTU-13”) botnet dataset.  
+2.How to merge pacp packets?  
+You need to execute the following command from the command line:
 ```
 >cd wireshark
 >mergecap -w target_path/normal.pcap source_path/CTU-Normal/*.pcap
-```
-###3. Initial feature extraction in zeek
+```  
+3. Initial feature extraction in zeek  
 >zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
-###4. To Python
-Import the extracted features into Python by zat and filter the TLS encrypted flows.
+4. To Python  
+Import the extracted features into Python by zat and filter the TLS encrypted flows.  
 
 ## Feature reduction mechanism
-Use ANOVA and MIC to sort the features and pick the number of features you need.
-You can run this module in the _feature reduction mechanism.ipynb_.
-##DMF classifier
-###Structure
-According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.
-Figure
-###Implement your own algorithm
-In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}
+Use ANOVA and MIC to sort the features and pick the number of features you need.  
+You can run this module in the _feature reduction mechanism.ipynb_.  
+##DMF classifier  
+###Structure  
+According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.  
+Figure  
+###Implement your own algorithm  
+In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}  
 ```python
 def model(num):
     sclf = RandomForestClassifier(max_depth=12,n_estimators=100,oob_score=True,n_jobs=-1)
@@ -81,11 +79,12 @@ def model(num):
     pipe3 = make_pipeline(ColumnSelector(cols=range(num)),sgnb)
 
     stack = StackingClassifier(classifiers=[pipe1,pipe2,pipe3], meta_classifier=LogisticRegression(solver="lbfgs"))
-    return stack```
-##Query and train
-After completing the modeling, you can quickly build an AS-DMF query framework using the Toolbox tool in the ALiPy package. The framework uses a pool-based active learning approach and a specific query strategy for querying, labeling and training. You need to pre-set a labeled training set L and a large pool of unlabeled samples U. The sample size of L and U can be set by yourself.
+return stack
+```  
+##Query and train  
+After completing the modeling, you can quickly build an AS-DMF query framework using the Toolbox tool in the ALiPy package. The framework uses a pool-based active learning approach and a specific query strategy for querying, labeling and training. You need to pre-set a labeled training set L and a large pool of unlabeled samples U. The sample size of L and U can be set by yourself.  
 alibox.split_AL(test_ratio=0.3, initial_label_rate=0.001, split_count=10)
-ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take uncertainty adoption as an example to quickly implement a query operation.
+ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take uncertainty adoption as an example to quickly implement a query operation.  
 ```python
 alibox = ToolBox(X=X, y=y, query_type='AllLabels', saving_path='.')
 
@@ -137,13 +136,13 @@ analyser = alibox.get_experiment_analyser(x_axis='num_of_queries')
 analyser.add_method(method_name='QBC', method_results=QBC_result)
 print(analyser)
 analyser.plot_learning_curves(title='Example of AL', std_area=True)
-```
-Acknowledgement
-We would like to thank the following researchers for their open source resources (in no particular order).
+```  
+##Acknowledgement
+We would like to thank the following researchers for their open source resources (in no particular order).  
 * Stratosphere.. Stratosphere Laboratory Datasets. Retrieved March 13, 2020.
 * https://zeek.org/
 
-##Contact
+##Contact  
 
-##License
+##License  
 
