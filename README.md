@@ -6,7 +6,7 @@ Authors:
 - [Dataset and feature extraction](#Dataset-and-feature-extraction)
 - [Feature reduction mechanism](#Feature-reduction-mechanism)
 - [DMF classifier](#DMF-classifier)
-- [Query and train](#Query-and-train) 
+- [Query and training](#Query-and-training) 
 - [Acknowledgement](#Acknowledgement) 
 
 ## Introduction  
@@ -88,7 +88,7 @@ def model(num):
     stack = StackingClassifier(classifiers=[pipe1,pipe2,pipe3], meta_classifier=LogisticRegression(solver="lbfgs"))
 return stack
 ```  
-## Query and train  
+## Query and training  
 After completing the modeling, you can quickly build an AS-DMF query framework using the Toolbox tool in the ALiPy package. The framework uses a pool-based active learning approach and a specific query strategy for querying, labeling and training. You need to pre-set a labeled training set L and a large pool of unlabeled samples U. The sample size of L and U can be set by yourself.  
 ```python
 alibox.split_AL(test_ratio=0.3, initial_label_rate=0.001, split_count=10)
