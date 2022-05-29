@@ -41,8 +41,8 @@ alipy
 3. Others  
 For other packets used in the experiment, please refer to _impot.txt_
 ## Dataset and feature extraction
-You can run this module in _Data pre-processing.ipyn_.  
-Details are shown below:   
+You can run this module in _Data pre-processing.ipynb_. Details are shown below:   
+
 1.Dataset  
 We use the open source [CTU-13](https://www.stratosphereips.org/datasets-ctu13 "CTU-13") botnet dataset.
 
@@ -62,12 +62,18 @@ Import the extracted features into Python by zat and filter the TLS encrypted fl
 ## Feature reduction mechanism
 Use ANOVA and MIC to sort the features and pick the number of features you need.  
 You can run this module in the _feature reduction mechanism.ipynb_.  
+```python
+n = number
+X_reduction = SelectKBest(lambda X, Y: tuple(map(tuple,array(list(map(lambda x:mic(x, Y), 
+                    X.T))).T)),k=n).fit_transform(x_de,y)
+```
 ## DMF classifier  
 ### Structure  
 According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.  
 <div align="center">
 <img src=https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/stacking.jpg width=50% />
-</div>
+</div>  
+  
 ### Implement your own algorithm  
 In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}  
 ```python
@@ -142,9 +148,11 @@ analyser.plot_learning_curves(title='Example of AL', std_area=True)
 ```  
 ## Acknowledgement
 Thanks for these awesome resources that were used during the development of the AS-DMF framework：  
-* Stratosphere.. Stratosphere Laboratory Datasets. Retrieved March 13, 2020.
+* https://www.stratosphereips.org/datasets-ctu13
+* https://www.wireshark.org/
 * https://zeek.org/
 * https://github.com/zeek-flowmeter/zeek-flowmeter
 * https://github.com/SuperCowPowers/zat
+* https://scikit-learn.org/stable/index.html
 
 ## Contact  
