@@ -5,13 +5,13 @@ import pandas
 import matplotlib.pyplot
 
 import joblib,copy,alipy
-	from joblib import Parallel,delayed
-	from alipy import ToolBox
+    from joblib import Parallel,delayed
+    from alipy import ToolBox
 
 import zat
-	from zat.log_to_dataframe import LogToDataFrame
-	from zat.dataframe_to_matrix import DataFrameToMatrix
+    from zat.log_to_dataframe import LogToDataFrame
+    from zat.dataframe_to_matrix import DataFrameToMatrix
 import sklearn
-	from sklearn import model_selection
-	from sklearn.pipeline import make_pipeline 
+    from sklearn import model_selection
+    from sklearn.pipeline import make_pipeline 
 
