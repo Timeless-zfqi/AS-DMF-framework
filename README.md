@@ -21,6 +21,7 @@ DMF classifier is the model used to train query samples in AS-DMF framework.
 * __Query and train__.
 This module is the query and training process of AS-DMF. It mainly uses the pool-based active learning framework and specific querying strategies to query and label informative and representative instances. and train the labeled samples using DMF classifier.
 ![DFM](https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/Framework.jpg)
+
 ## Setup
 Before you use this project, you must configure the following environment.  
 1. Requirements
@@ -65,7 +66,9 @@ You can run this module in the _feature reduction mechanism.ipynb_.
 ## DMF classifier  
 ### Structure  
 According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.  
-![stacking](https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/stacking.jpg)
+<div align="center">
+<img src=https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/stacking.jpg width=50% />
+</div>
 ### Implement your own algorithm  
 In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}  
 ```python
@@ -139,8 +142,10 @@ print(analyser)
 analyser.plot_learning_curves(title='Example of AL', std_area=True)
 ```  
 ## Acknowledgement
-We would like to thank the following researchers for their open source resources (in no particular order).  
+Thanks for these awesome resources that were used during the development of the AS-DMF framework：  
 * Stratosphere.. Stratosphere Laboratory Datasets. Retrieved March 13, 2020.
 * https://zeek.org/
+* https://github.com/zeek-flowmeter/zeek-flowmeter
+* https://github.com/SuperCowPowers/zat
 
 ## Contact  
