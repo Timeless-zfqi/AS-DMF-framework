@@ -154,5 +154,3 @@ Thanks for these awesome resources that were used during the development of the 
 * https://github.com/zeek-flowmeter/zeek-flowmeter
 * https://github.com/SuperCowPowers/zat
 * https://scikit-learn.org/stable/index.html
-
-## Contact  
