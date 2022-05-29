@@ -48,7 +48,7 @@ Please refer to the _import.txt_
 You can run this module in _Data pre-processing.ipyn_.  
 Details are shown below:   
 1.Dataset  
-We use the open source CTU-13 botnet dataset.[CTU-13](https://www.stratosphereips.org/datasets-ctu13 “CTU-13”)
+We use the open source [CTU-13](https://www.stratosphereips.org/datasets-ctu13 "CTU-13") botnet dataset.
 
 2.How to merge pacp packets?  
 You need to execute the following command from the command line:
