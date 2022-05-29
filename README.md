@@ -8,7 +8,7 @@ Authors:
 - [Setup](#Setup)
 - [Dataset and feature extraction](#Dataset-and-feature-extraction)
 - [Feature reduction mechanism](#Feature-reduction-mechanism)
-	- [DMF classifier](#DMF-classifier)
+- [DMF classifier](#DMF-classifier)
 - [Query and train]( Query-and-train) 
 - [Acknowledgement](#Acknowledgement) 
 - [License](#License)   
@@ -49,6 +49,7 @@ You can run this module in _Data pre-processing.ipyn_.
 Details are shown below:   
 1.Dataset  
 We use the open source [CTU-13]( https://www.stratosphereips.org/datasets-ctu13 “CTU-13”) botnet dataset.  
+
 2.How to merge pacp packets?  
 You need to execute the following command from the command line:
 ```
@@ -57,6 +58,7 @@ You need to execute the following command from the command line:
 ```
 3. Initial feature extraction in zeek  
 zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
+
 4. To Python  
 Import the extracted features into Python by zat and filter the TLS encrypted flows.  
 
@@ -66,7 +68,7 @@ You can run this module in the _feature reduction mechanism.ipynb_.
 ## DMF classifier  
 ### Structure  
 According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.  
-Figure  
+![DFM](https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/Framework300dpi.png)
 ### Implement your own algorithm  
 In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}  
 ```python
@@ -86,7 +88,7 @@ After completing the modeling, you can quickly build an AS-DMF query framework u
 ```python
 alibox.split_AL(test_ratio=0.3, initial_label_rate=0.001, split_count=10)
 ```
-ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take uncertainty adoption as an example to quickly implement a query operation.  
+ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take QBC adoption as an example to quickly implement a query operation.  
 ```python
 alibox = ToolBox(X=X, y=y, query_type='AllLabels', saving_path='.')
 
