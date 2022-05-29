@@ -1,4 +1,4 @@
-#AS-DMF：A Lightweight TLS encrypted traffic detection framework
+# AS-DMF：A Lightweight TLS encrypted traffic detection framework
 
 Badges
 `Active learning`, `machine learning`, `TLS`, `python, zeek`  
@@ -12,7 +12,7 @@ Authors:
 - [Query and train]( Query-and-train) 
 - [Acknowledgement](#Acknowledgement) 
 - [License](#License)   
-##Introduction  
+## Introduction  
 Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
 __Modules of AS-DMF framework include:__
 * __Data pre-processing and feature extraction__
@@ -63,11 +63,11 @@ Import the extracted features into Python by zat and filter the TLS encrypted fl
 ## Feature reduction mechanism
 Use ANOVA and MIC to sort the features and pick the number of features you need.  
 You can run this module in the _feature reduction mechanism.ipynb_.  
-##DMF classifier  
-###Structure  
+## DMF classifier  
+### Structure  
 According to the characteristics of the extracted features, Random Forest classifier, XGBoost classifier and Gaussian Naive Bayes classifier are designed respectively. The three classifiers are combined according to the stacking strategy to form DMF classifier, and the second layer of model is logistic regression.  
 Figure  
-###Implement your own algorithm  
+### Implement your own algorithm  
 In DMF classifier, there is no limitation for your implementation. All you need is ensure all models have the ability to output probability. Among them {pipe1, pipe2, pipe3, meta_classifier}  
 ```python
 def model(num):
@@ -81,7 +81,7 @@ def model(num):
     stack = StackingClassifier(classifiers=[pipe1,pipe2,pipe3], meta_classifier=LogisticRegression(solver="lbfgs"))
 return stack
 ```  
-##Query and train  
+## Query and train  
 After completing the modeling, you can quickly build an AS-DMF query framework using the Toolbox tool in the ALiPy package. The framework uses a pool-based active learning approach and a specific query strategy for querying, labeling and training. You need to pre-set a labeled training set L and a large pool of unlabeled samples U. The sample size of L and U can be set by yourself.  
 alibox.split_AL(test_ratio=0.3, initial_label_rate=0.001, split_count=10)
 ALiPy provides us with diverse query strategies, or combine and design new ones according to your own needs. Take uncertainty adoption as an example to quickly implement a query operation.  
@@ -137,12 +137,12 @@ analyser.add_method(method_name='QBC', method_results=QBC_result)
 print(analyser)
 analyser.plot_learning_curves(title='Example of AL', std_area=True)
 ```  
-##Acknowledgement
+## Acknowledgement
 We would like to thank the following researchers for their open source resources (in no particular order).  
 * Stratosphere.. Stratosphere Laboratory Datasets. Retrieved March 13, 2020.
 * https://zeek.org/
 
-##Contact  
+## Contact  
 
-##License  
+## License  
 
