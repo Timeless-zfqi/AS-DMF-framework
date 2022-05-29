@@ -11,7 +11,7 @@ Authors:
 - [DMF classifier](#DMF-classifier)
 - [Query and train](#Query-and-train) 
 - [Acknowledgement](#Acknowledgement) 
-- [License](#License)   
+
 ## Introduction  
 Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
 __Modules of AS-DMF framework include:__
@@ -147,6 +147,3 @@ We would like to thank the following researchers for their open source resources
 * https://zeek.org/
 
 ## Contact  
-
-## License  
-
