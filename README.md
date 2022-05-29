@@ -57,8 +57,9 @@ You need to execute the following command from the command line:
 >mergecap -w target_path/normal.pcap source_path/CTU-Normal/*.pcap
 ```
 3. Initial feature extraction in zeek  
+```
 zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
-
+```
 4. To Python  
 Import the extracted features into Python by zat and filter the TLS encrypted flows.  
 
