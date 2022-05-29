@@ -23,7 +23,7 @@ This module is used to perform feature selection and to study feature-level ligh
 DMF classifier is the model used to train query samples in AS-DMF framework.
 * __Query and train__.
 This module is the query and training process of AS-DMF. It mainly uses the pool-based active learning framework and specific querying strategies to query and label informative and representative instances. and train the labeled samples using DMF classifier.
-![DFM](https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/Framework300dpi.png)
+![DFM](https://github.com/Timeless-zfqi/AS-DMF-framework/blob/main/Figure/Framework300dpi.png){:height="50%" width="50%"}
 ## Setup
 Before you use this project, you must configure the following environment.  
 1. Requirements
