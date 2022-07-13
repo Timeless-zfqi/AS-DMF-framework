@@ -1,5 +1,5 @@
 function [ dis ] = manhattanDist( X, Y )
-%MAHATTENDIST Summary of this function goes here
+%MAHATTENDIST Summary of this function goes here 
 %   Compute the mahatten distance between X and Y for each row.
 %   Input: X, Y, two row vector matrix
 %   Output: If X has n1 rows and Y has n2 rows return matrix with n1*n2 scale.
