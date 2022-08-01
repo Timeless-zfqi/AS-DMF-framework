@@ -4,17 +4,17 @@ Authors:
 - [Introduction](#Introduction)
 - [Setup](#Setup)
 - [Dataset and feature extraction](#Dataset-and-feature-extraction)
-- [Feature reduction mechanism](#Feature-reduction-mechanism)
+- [Feature selection mechanism](#Feature-selection-mechanism)
 - [DMF classifier](#DMF-classifier)
 - [Query and training](#Query-and-training) 
 - [Acknowledgement](#Acknowledgement) 
 
 ## Introduction  
-Our project is a combination of active learning and feature reduction to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
+Our project is a combination of active learning and feature selection to achieve lightweight detection of TLS encrypted malicious traffic. The aim is to work lightly on both data and feature dimensions.  
 __Modules of AS-DMF framework include:__
 * __Data pre-processing and feature extraction__.
 This module is used to pre-process the captured pcap packets and perform preliminary feature extraction to select the TLS encrypted flows to form the initial sample set.
-* __Feature reduction mechanism__.
+* __Feature selection mechanism__.
 This module is used to perform feature selection and to study feature-level lightweighting.
 * __DMF classifier__.
 DMF classifier is the model used to train query samples in AS-DMF framework.
@@ -59,12 +59,12 @@ zeek flowmeter -C -r target pcap path/*.pcap (or .pcapng is also accept)
 4. To Python  
 Import the extracted features into Python by zat and filter the TLS encrypted flows.  
 
-## Feature reduction mechanism
+## Feature selection mechanism
 Use ANOVA and MIC to sort the features and pick the number of features you need.  
-You can run this module in the _feature reduction mechanism.ipynb_.  
+You can run this module in the _feature selection mechanism.ipynb_.  
 ```python
 n = number
-X_reduction = SelectKBest(lambda X, Y: tuple(map(tuple,array(list(map(lambda x:mic(x, Y), 
+X_selection = SelectKBest(lambda X, Y: tuple(map(tuple,array(list(map(lambda x:mic(x, Y), 
                     X.T))).T)),k=n).fit_transform(x_de,y)
 ```
 ## DMF classifier  
